@@ -85,3 +85,32 @@ def check_game_end_condition():
             break
 
     return flag
+
+while True:
+    if input("Start the game? (y/n): ") != "y":
+        break
+
+    while (not check_game_end_condition()) and "_" in "".join(["".join([e for e in row]) for row in board]):
+        is_cross = not is_cross
+        s = input(f"Enter {'cross' if is_cross else 'circle'} position (row column): ")
+        x, y = take_coordinates(s)
+        while x == None:
+            s = input("Incorrect entry, try again (e.g. 2 3): ")
+            x, y = take_coordinates(s)
+        board[x - 1][y - 1] = "X" if is_cross else "O"
+        show_board()
+    
+    if not "_" in "".join(["".join([e for e in row]) for row in board]):
+        print("It's a tie!")
+    else:
+        if is_cross:
+            print("Crosses won!")
+        else:
+            print("Circles won!")
+    
+    board = [
+        ["_", "_", "_"],
+        ["_", "_", "_"],
+        ["_", "_", "_"]
+    ]
+    is_cross = False
