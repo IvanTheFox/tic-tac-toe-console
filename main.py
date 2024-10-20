@@ -51,6 +51,8 @@ is_cross = False
 
 def show_board(): print("\n".join([" ".join([e for e in row]) for row in board]))
 
+  def show_board(): print("\n".join([" ".join([e for e in row]) for row in board]))
+
 def take_coordinates(s : str):
     s = s.split()
     if len(s) != 2: return None, None
